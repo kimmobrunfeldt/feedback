@@ -1,6 +1,6 @@
 # Feedback
 
-![](https://feedback-service-prod.herokuapp.com/badges/kimmobrunfeldt/feedback.svg)
+<img src="https://feedback-service-prod.herokuapp.com/badges/kimmobrunfeldt/feedback.svg" />
 
 Like it?
 [👍](https://feedback-service-prod.herokuapp.com/positive?target=kimmobrunfeldt/feedback)
