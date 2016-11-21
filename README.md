@@ -1,5 +1,5 @@
 # Feedback
 
-Feedback [😊](http://localhost:8080/positive?target=kimmobrunfeldt/feedback) [😞](http://localhost:8080/negative?target=kimmobrunfeldt/feedback)
+Like it? [👍](https://feedback-service-prod.herokuapp.com/positive?target=kimmobrunfeldt/feedback) [👎](https://feedback-service-prod.herokuapp.com/negative?target=kimmobrunfeldt/feedback)
 
-![](http://localhost:8080/badges/kimmobrunfeldt/feedback.svg)
+![](https://feedback-service-prod.herokuapp.com/badges/kimmobrunfeldt/feedback.svg)

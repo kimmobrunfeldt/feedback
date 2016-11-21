@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const compression = require('compression');
+const expressHandlebars  = require('express-handlebars');
 const errorResponder = require('./middleware/error-responder');
 const errorLogger = require('./middleware/error-logger');
 const createRouter = require('./router');
@@ -24,6 +25,10 @@ function createApp() {
     // Compress everything over 10 bytes
     threshold: 10,
   }));
+
+  app.set('views', './src/views');
+  app.engine('hbs', expressHandlebars({ extname: '.hbs' }));
+  app.set('view engine', 'hbs');
 
   // Initialize routes
   const router = createRouter();

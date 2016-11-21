@@ -1,42 +1,34 @@
 const ex = require('../util/express');
 const feedbackCore = require('../core/feedback-core');
 
-const positiveFeedback = ex.createJsonRoute((req) => {
-  const referer = req.headers.referer;
-  if (!referer) {
-    const err = new Error('Feedback request denied');
-    err.status = 403;
-    throw err;
-  }
-  console.log('referer', referer)
-
-  // TODO: validation
-  const feedback = {
-    rating: 1,
-    target: req.query.target,
-    ipAddress: req.ip,
-  };
-
-  return feedbackCore.upsertFeedback(feedback);
+const positiveFeedback = ex.createRoute((req, res) => {
+  return _giveFeedback(req, res, 1);
 });
 
-const negativeFeedback = ex.createJsonRoute((req) => {
+const negativeFeedback = ex.createRoute((req, res) => {
+  return _giveFeedback(req, res, -1);
+});
+
+function _giveFeedback(req, res, rating) {
   const referer = req.headers.referer;
   if (!referer) {
-    const err = new Error('Feedback request denied');
-    err.status = 403;
-    throw err;
+    res.status(403);
+    return res.render('feedback-denied');
   }
 
   // TODO: validation
   const feedback = {
-    rating: -1,
+    rating,
     target: req.query.target,
     ipAddress: req.ip,
   };
 
-  return feedbackCore.upsertFeedback(feedback);
-});
+  return feedbackCore.upsertFeedback(feedback)
+    .then(() => {
+      const template = rating === 1 ? 'positive' : 'negative';
+      res.render(template, { redirectUrl: referer });
+    });
+}
 
 module.exports = {
   positiveFeedback,
