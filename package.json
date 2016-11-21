@@ -1,0 +1,31 @@
+{
+  "name": "feedback",
+  "version": "1.0.0",
+  "description": "Feedback service",
+  "scripts": {
+    "start": "nodemon --watch ./src -e js src/index.js",
+    "lint": "eslint ./src"
+  },
+  "author": "Kimmo Brunfeldt",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb-base": "^10.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "common-tags": "^1.4.0",
+    "compression": "^1.6.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "knex": "^0.12.6",
+    "lodash": "^4.17.2",
+    "morgan": "^1.7.0",
+    "pg": "^6.1.0",
+    "server-destroy": "^1.0.1",
+    "winston": "^2.3.0"
+  }
+}
