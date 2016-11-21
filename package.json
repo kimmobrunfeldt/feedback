@@ -4,7 +4,8 @@
   "description": "Feedback service",
   "scripts": {
     "start": "nodemon --watch ./src -e js src/index.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "postinstall": "bash ./tools/migrate-latest.sh"
   },
   "author": "Kimmo Brunfeldt",
   "license": "MIT",
