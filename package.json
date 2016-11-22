@@ -7,7 +7,7 @@
     "npm": "3.x.x"
   },
   "scripts": {
-    "start": "nodemon --watch ./src -e js src/index.js",
+    "start": "nodemon --watch ./src -e js src/index.js & mdlive -d ./dev",
     "lint": "eslint ./src",
     "postinstall": "bash ./tools/migrate-latest.sh"
   },
@@ -17,6 +17,7 @@
     "eslint": "^3.10.2",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",
+    "markdown-live": "^1.0.8",
     "nodemon": "^1.11.0"
   },
   "dependencies": {

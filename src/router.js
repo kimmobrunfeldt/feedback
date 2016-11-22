@@ -8,7 +8,9 @@ function createRouter() {
   router.get('/negative', feedback.negativeFeedback);
 
   // Match "/badges/*.svg", * will be available as req.params[0]
-  router.get(/^\/badges\/(.+).svg$/, badge.getSummary);
+  router.get(/^\/badges\/thumbs-up\/(.+).svg$/, badge.getThumbsUp);
+  router.get(/^\/badges\/thumbs-down\/(.+).svg$/, badge.getThumbsDown);
+  router.get(/^\/badges\/summary\/(.+).svg$/, badge.getSummary);
   return router;
 }
 
