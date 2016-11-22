@@ -6,4 +6,7 @@
 [![](https://feedback-service-prod.herokuapp.com/badges/thumbs-up/kimmobrunfeldt/feedback.svg)](https://feedback-service-prod.herokuapp.com/positive?target=kimmobrunfeldt/feedback) [![](https://feedback-service-prod.herokuapp.com/badges/thumbs-down/kimmobrunfeldt/feedback.svg)](https://feedback-service-prod.herokuapp.com/negative?target=kimmobrunfeldt/feedback)
 
 
-You can gather feedback about your open source libraries.
+
+## What is this?
+
+With <feedback service>, you can gather precious feedback about your open source libraries.
