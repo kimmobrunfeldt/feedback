@@ -25,6 +25,7 @@ function _giveFeedback(req, res, rating) {
 
   return feedbackCore.upsertFeedback(feedback)
     .then(() => {
+      res.set('cache-control', 'no-cache');
       const template = rating === 1 ? 'positive' : 'negative';
       res.render(template, { redirectUrl: referer });
     });
