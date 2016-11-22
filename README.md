@@ -9,4 +9,4 @@
 
 ## What is this?
 
-With <feedback service>, you can gather precious feedback about your open source libraries.
+With `<feedback service name>`, you can gather precious feedback about your open source libraries.
