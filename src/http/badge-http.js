@@ -7,8 +7,10 @@ const getSummary = ex.createRoute((req, res) => {
   const target = req.params[0];
   summaryCore.getSummary(target)
     .then((summary) => {
-      res.set('content-type', 'image/svg+xml');
-
+      res.header('content-type', 'image/svg+xml');
+      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.header('Pragma', 'no-cache');
+      res.header('Expires', 0);
       const content = summary ? _renderSummary(summary) : _renderEmpty();
       res.send(content);
     });
