@@ -1,3 +1,5 @@
+const _ = require('lodash');
+const BPromise = require('bluebird');
 const { stripIndent } = require('common-tags');
 const ex = require('../util/express');
 const summaryCore = require('../core/summary-core');
@@ -19,28 +21,41 @@ const getSummary = ex.createRoute((req, res) => {
 const getThumbsUp = ex.createRoute((req, res) => {
   // TODO: validation
   const target = req.params[0];
-  summaryCore.getSummary(target)
-    .then((summary) => {
+  BPromise.props({
+    summary: summaryCore.getSummary(target),
+    previousFeedback: summaryCore.getFeedbackByIp(req.ip, target),
+  })
+    .then((result) => {
       res.header('content-type', 'image/svg+xml');
       res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
-      res.render('thumbs-up', { positiveCount: summary.positiveCount });
+      res.render('thumbs-up', {
+        positiveCount: result.summary.positiveCount,
+        color: _.get(result.previousFeedback, 'rating') === 1 ? '#4c1' : '#6D6D6D',
+      });
     });
 });
 
 const getThumbsDown = ex.createRoute((req, res) => {
   // TODO: validation
   const target = req.params[0];
-  summaryCore.getSummary(target)
-    .then((summary) => {
+  BPromise.props({
+    summary: summaryCore.getSummary(target),
+    previousFeedback: summaryCore.getFeedbackByIp(req.ip, target),
+  })
+    .then((result) => {
       res.header('content-type', 'image/svg+xml');
       res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
-      res.render('thumbs-down', { negativeCount: summary.negativeCount });
+      res.render('thumbs-down', {
+        negativeCount: result.summary.negativeCount,
+        color: _.get(result.previousFeedback, 'rating') === -1 ? '#d6604a' : '#6D6D6D',
+      });
     });
 });
+
 
 function _renderSummary(summary) {
   const ratio = (summary.sum + summary.totalCount) / (summary.totalCount * 2);

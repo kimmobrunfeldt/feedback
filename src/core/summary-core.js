@@ -23,6 +23,24 @@ function getSummary(target) {
     });
 }
 
+function getFeedbackByIp(ipAddress, target) {
+  return knex.raw(oneLine`
+    SELECT
+      *
+    FROM feedbacks
+    WHERE
+      ip_address = ? AND
+      target = ?
+  `, [ipAddress, target])
+    .then((result) => {
+      if (_.isEmpty(result.rows)) {
+        return null;
+      }
+
+      return _feedbackRowToObj(result.rows[0]);
+    });
+}
+
 function _summaryRowToObj(row) {
   return {
     target: row.target,
@@ -33,6 +51,17 @@ function _summaryRowToObj(row) {
   };
 }
 
+function _feedbackRowToObj(row) {
+  return {
+    id: row.id,
+    target: row.target,
+    ipAddress: row.ip_address,
+    rating: Number(row.rating),
+    createdAt: row.created_at,
+  };
+}
+
 module.exports = {
   getSummary,
+  getFeedbackByIp,
 };
