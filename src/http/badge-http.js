@@ -10,7 +10,7 @@ const getSummary = ex.createRoute((req, res) => {
   summaryCore.getSummary(target)
     .then((summary) => {
       res.header('content-type', 'image/svg+xml');
-      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.header('Cache-Control', 'private');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
       const content = summary ? _renderSummary(summary) : _renderEmpty();
@@ -27,7 +27,7 @@ const getThumbsUp = ex.createRoute((req, res) => {
   })
     .then((result) => {
       res.header('content-type', 'image/svg+xml');
-      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.header('Cache-Control', 'private');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
       res.render('thumbs-up', {
@@ -46,7 +46,7 @@ const getThumbsDown = ex.createRoute((req, res) => {
   })
     .then((result) => {
       res.header('content-type', 'image/svg+xml');
-      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.header('Cache-Control', 'private');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
       res.render('thumbs-down', {

@@ -25,7 +25,7 @@ function _giveFeedback(req, res, rating) {
 
   return feedbackCore.upsertFeedback(feedback)
     .then(() => {
-      res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.header('private');
       res.header('Pragma', 'no-cache');
       res.header('Expires', 0);
       const template = rating === 1 ? 'positive' : 'negative';
